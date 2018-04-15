@@ -1,16 +1,15 @@
 package guru.springframework.didemo.services;
 
 
-public class SpanishGreetingService implements GreetingService{
-
+public class PrimaryGermanGreetingService implements GreetingService {
     private GreetingRepository greetingRepository;
 
-    public SpanishGreetingService(GreetingRepository greetingRepository) {
+    public PrimaryGermanGreetingService(GreetingRepository greetingRepository) {
         this.greetingRepository = greetingRepository;
     }
 
     @Override
     public String sayGreeting() {
-        return greetingRepository.getSpanishGreeting();
+        return greetingRepository.getGermanGreeting();
     }
 }
