@@ -12,14 +12,8 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.env.Environment;
 
 @Configuration
-@PropertySources({
-        @PropertySource("classpath:datasource.properties"),
-        @PropertySource("classpath:jms.properties")
-})
 public class PropertyConfig {
 
-    @Autowired
-    Environment env;
 
     @Value("${guru.username}")
     String user;
@@ -44,10 +38,10 @@ public class PropertyConfig {
         FakeDatasource fakeDatasource = new FakeDatasource();
         //si la environment property fuera GURU_USERNAME, no sería necesario inyectar Environment por que
         //la variable de entorno GURU_USERNAME sobre-escribiría la definida en datasource.properties.
-        String envUser = env.getProperty("USERNAME");
-        fakeDatasource.setUsername(envUser);
-        fakeDatasource.setPassword(password);
-        fakeDatasource.setDburl(url);
+
+        fakeDatasource.setUsername(this.user);
+        fakeDatasource.setPassword(this.password);
+        fakeDatasource.setDburl(this.url);
         return fakeDatasource;
     }
 
@@ -60,10 +54,4 @@ public class PropertyConfig {
         return fakeJmsBroker;
     }
 
-
-    @Bean
-    public static PropertySourcesPlaceholderConfigurer properties(){
-        PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer = new PropertySourcesPlaceholderConfigurer();
-        return propertySourcesPlaceholderConfigurer;
-    }
 }
