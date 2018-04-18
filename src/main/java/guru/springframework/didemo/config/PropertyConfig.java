@@ -37,7 +37,7 @@ public class PropertyConfig {
     public FakeDatasource fakeDatasource(){
         FakeDatasource fakeDatasource = new FakeDatasource();
         //si la environment property fuera GURU_USERNAME, no sería necesario inyectar Environment por que
-        //la variable de entorno GURU_USERNAME sobre-escribiría la definida en datasource.properties.
+        //la variable de entorno GURU_USERNAME sobre-escribiría la definida en datasource.properties.q
 
         fakeDatasource.setUsername(this.user);
         fakeDatasource.setPassword(this.password);
